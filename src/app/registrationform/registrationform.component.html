@@ -1,0 +1,175 @@
+<div class="content-wrapper">
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Registration Form</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title text-center w-100">Form Pendaftaran</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form #regForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+          <div class="card-body">
+      <div class="form-group">
+        <label for="nama">Nama</label>
+        <input type="text" class="form-control" id="nama" name="nama" required minlength="3" [(ngModel)]="model.nama" #nama="ngModel" />
+        <div *ngIf="nama.invalid && (nama.dirty || nama.touched)" class="text-danger">
+          <small *ngIf="nama.errors?.['required']">Nama wajib diisi.</small>
+          <small *ngIf="nama.errors?.['minlength']">Nama minimal 3 karakter.</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="nisn">NISN</label>
+        <input type="text" class="form-control" id="nisn" name="nisn" required pattern="^[0-9]{10}$" [(ngModel)]="model.nisn" #nisn="ngModel" />
+        <div *ngIf="nisn.invalid && (nisn.dirty || nisn.touched)" class="text-danger">
+          <small *ngIf="nisn.errors?.['required']">NISN wajib diisi.</small>
+          <small *ngIf="nisn.errors?.['pattern']">NISN harus 10 digit angka.</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" required email [(ngModel)]="model.email" #email="ngModel" />
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+          <small *ngIf="email.errors?.['required']">Email wajib diisi.</small>
+          <small *ngIf="email.errors?.['email']">Format email tidak valid.</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="tel" class="form-control" id="phone" name="phone" required pattern="^[0-9]{10,15}$" [(ngModel)]="model.phone" #phone="ngModel" />
+        <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="text-danger">
+          <small *ngIf="phone.errors?.['required']">Phone wajib diisi.</small>
+          <small *ngIf="phone.errors?.['pattern']">Phone harus berupa angka 10-15 digit.</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="asalSekolah">Asal Sekolah</label>
+        <input type="text" class="form-control" id="asalSekolah" name="asalSekolah" required [(ngModel)]="model.asalSekolah" #asalSekolah="ngModel" />
+        <div *ngIf="asalSekolah.invalid && (asalSekolah.dirty || asalSekolah.touched)" class="text-danger">
+          <small>Asal Sekolah wajib diisi.</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="alamat">Alamat</label>
+        <textarea class="form-control" id="alamat" name="alamat" required [(ngModel)]="model.alamat" #alamat="ngModel"></textarea>
+        <div *ngIf="alamat.invalid && (alamat.dirty || alamat.touched)" class="text-danger">
+          <small>Alamat wajib diisi.</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="nilai">Nilai</label>
+        <input type="number" class="form-control" id="nilai" name="nilai" required min="0" max="100" [(ngModel)]="model.nilai" #nilai="ngModel" />
+        <div *ngIf="nilai.invalid && (nilai.dirty || nilai.touched)" class="text-danger">
+          <small *ngIf="nilai.errors?.['required']">Nilai wajib diisi.</small>
+          <small *ngIf="nilai.errors?.['min'] || nilai.errors?.['max']">Nilai harus antara 0 sampai 100.</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="jurusan">Jurusan</label>
+        <select class="form-control" id="jurusan" name="jurusan" required [(ngModel)]="model.jurusan" #jurusan="ngModel">
+          <option value="" disabled selected>Pilih Jurusan</option>
+          <option value="Multimedia">Multimedia</option>
+          <option value="TKJ">TKJ</option>
+          <option value="Akuntansi">Akuntansi</option>
+        </select>
+        <div *ngIf="jurusan.invalid && (jurusan.dirty || jurusan.touched)" class="text-danger">
+          <small *ngIf="jurusan.errors?.['required']">Jurusan wajib dipilih.</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Jenis Kelamin</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" id="laki" name="jenisKelamin" value="Laki-laki" required [(ngModel)]="model.jenisKelamin" #jenisKelamin="ngModel" />
+          <label class="form-check-label" for="laki">Laki-laki</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" id="perempuan" name="jenisKelamin" value="Perempuan" required [(ngModel)]="model.jenisKelamin" />
+          <label class="form-check-label" for="perempuan">Perempuan</label>
+        </div>
+        <div *ngIf="jenisKelamin.invalid && (jenisKelamin.dirty || jenisKelamin.touched)" class="text-danger">
+          <small *ngIf="jenisKelamin.errors?.['required']">Jenis Kelamin wajib dipilih.</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Ekstrakulikuler</label>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="pramuka" name="ekstrakulikuler" value="Pramuka" [(ngModel)]="model.ekstrakulikuler.pramuka" />
+          <label class="form-check-label" for="pramuka">Pramuka</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="futsal" name="ekstrakulikuler" value="Futsal" [(ngModel)]="model.ekstrakulikuler.futsal" />
+          <label class="form-check-label" for="futsal">Futsal</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="basket" name="ekstrakulikuler" value="Basket" [(ngModel)]="model.ekstrakulikuler.basket" />
+          <label class="form-check-label" for="basket">Basket</label>
+        </div>
+      </div>
+    </div>
+    <!-- /.card-body -->
+
+    <div class="card-footer text-center">
+      <button type="submit" class="btn btn-primary" [disabled]="regForm.invalid">Submit</button>
+          </div>
+          <!-- /.card-body -->
+
+          <div class="card-footer text-center">
+            <button type="submit" class="btn btn-primary" [disabled]="regForm.invalid">Submit</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Table to show model data -->
+      <div class="card mt-3">
+        <div class="card-header">
+          <h3 class="card-title text-center w-100">Data Pendaftaran</h3>
+        </div>
+        <div class="card-body p-0">
+          <table class="table table-bordered text-center m-0">
+            <thead>
+              <tr>
+                <th>Nama</th>
+                <th>NISN</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Asal Sekolah</th>
+                <th>Alamat</th>
+                <th>Nilai</th>
+                <th>Jurusan</th>
+                <th>Jenis Kelamin</th>
+                <th>Ekstrakulikuler</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ model.nama }}</td>
+                <td>{{ model.nisn }}</td>
+                <td>{{ model.email }}</td>
+                <td>{{ model.phone }}</td>
+                <td>{{ model.asalSekolah }}</td>
+                <td>{{ model.alamat }}</td>
+                <td>{{ model.nilai }}</td>
+                <td>{{ model.jurusan }}</td>
+                <td>{{ model.jenisKelamin }}</td>
+                <td>
+                  <span *ngIf="model.ekstrakulikuler.pramuka">Pramuka </span>
+                  <span *ngIf="model.ekstrakulikuler.futsal">Futsal </span>
+                  <span *ngIf="model.ekstrakulikuler.basket">Basket </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
