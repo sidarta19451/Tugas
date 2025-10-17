@@ -1,0 +1,78 @@
+<div class="content-wrapper">
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0 text-center">Konverter Suhu</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Konversi Suhu Celsius ↔ Fahrenheit</h3>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="celsius">Celsius (°C)</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="celsius"
+                      [value]="celsius"
+                      (input)="onCelsiusChange($event)"
+                      placeholder="Masukkan suhu dalam Celsius">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="fahrenheit">Fahrenheit (°F)</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="fahrenheit"
+                      [value]="fahrenheit"
+                      (input)="onFahrenheitChange($event)"
+                      placeholder="Masukkan suhu dalam Fahrenheit">
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-12">
+                  <div class="alert alert-info">
+                    <strong>Konversi Otomatis:</strong> Mengubah nilai di salah satu input akan secara otomatis mengupdate yang lainnya.
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="card bg-light">
+                    <div class="card-body text-center">
+                      <h5>Celsius ke Fahrenheit</h5>
+                      <p class="mb-0">{{ celsius }}°C = {{ fahrenheit.toFixed(2) }}°F</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card bg-light">
+                    <div class="card-body text-center">
+                      <h5>Fahrenheit ke Celsius</h5>
+                      <p class="mb-0">{{ fahrenheit }}°F = {{ celsius.toFixed(2) }}°C</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

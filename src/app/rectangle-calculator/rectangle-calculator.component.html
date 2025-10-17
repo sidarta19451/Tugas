@@ -1,0 +1,66 @@
+<div class="content-wrapper">
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0 text-center">Kalkulator Bentuk</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Pilih Bentuk dan Masukkan Dimensi</h3>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label for="shape">Bentuk:</label>
+                <select class="form-control" id="shape" [(ngModel)]="selectedShape" (ngModelChange)="onShapeChange($event)">
+                  <option value="rectangle">Persegi Panjang</option>
+                  <option value="triangle">Segitiga</option>
+                </select>
+              </div>
+              <div *ngFor="let key of getDimensionKeys()" class="form-group">
+                <label [for]="key">{{ getLabel(key) }} (cm):</label>
+                <input type="number" class="form-control" [id]="key" [(ngModel)]="dimensions[key]" (ngModelChange)="onDimensionChange(key, $event.toString())" [placeholder]="'Masukkan ' + getLabel(key).toLowerCase() + ' (cm)'" min="0.01" step="0.01">
+              </div>
+              <div *ngIf="errorMessage" class="alert alert-danger">
+                {{ errorMessage }}
+              </div>
+              <div class="mt-3">
+                <p><strong>Luas:</strong> {{ area }} cm²</p>
+                <p><strong>Keliling:</strong> {{ perimeter }} cm</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Riwayat Perhitungan</h3>
+            </div>
+            <div class="card-body">
+              <div *ngIf="history.length === 0" class="text-muted">
+                Belum ada perhitungan.
+              </div>
+              <div *ngFor="let entry of history" class="mb-3 p-2 border rounded">
+                <small class="text-muted">{{ entry.timestamp | date:'short' }}</small>
+                <p class="mb-1"><strong>Bentuk:</strong> {{ entry.shape === 'rectangle' ? 'Persegi Panjang' : 'Segitiga' }}</p>
+                <div *ngFor="let dim of entry.dimensions | keyvalue">
+                  <p class="mb-1"><strong>{{ getLabel(dim.key) }}:</strong> {{ dim.value }} cm</p>
+                </div>
+                <p class="mb-1"><strong>Luas:</strong> {{ entry.area }} cm²</p>
+                <p class="mb-1"><strong>Keliling:</strong> {{ entry.perimeter }} cm</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
