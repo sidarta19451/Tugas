@@ -1,0 +1,78 @@
+<div class="content-wrapper">
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0 text-center">Daftar Kontak</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Filter Kontak</h3>
+            </div>
+            <div class="card-body">
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-outline-primary" [class.active]="filter === null" (click)="setFilter(null)">Semua</button>
+                <button type="button" class="btn btn-outline-success" [class.active]="filter === true" (click)="setFilter(true)">Online</button>
+                <button type="button" class="btn btn-outline-secondary" [class.active]="filter === false" (click)="setFilter(false)">Offline</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Tambah Kontak Baru</h3>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label for="name">Nama:</label>
+                <input type="text" class="form-control" id="name" [(ngModel)]="newContact.name" placeholder="Masukkan nama">
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="online" [(ngModel)]="newContact.online">
+                <label class="form-check-label" for="online">Online</label>
+              </div>
+              <button type="button" class="btn btn-primary mt-2" (click)="addContact()">Tambah Kontak</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Daftar Kontak</h3>
+            </div>
+            <div class="card-body">
+              <div *ngIf="contacts.length === 0" class="text-muted">
+                Tidak ada kontak.
+              </div>
+              <div *ngFor="let contact of contacts" class="d-flex justify-content-between align-items-center mb-2 p-2 border rounded">
+                <div>
+                  <strong>ID: {{ contact.id }} - {{ contact.name }}</strong>
+                  <span class="badge ml-2" [class.badge-success]="contact.online" [class.badge-secondary]="!contact.online">
+                    {{ contact.online ? 'Online' : 'Offline' }}
+                  </span>
+                </div>
+                <div>
+                  <button type="button" class="btn btn-sm btn-outline-warning mr-1" (click)="toggleOnline(contact)">
+                    Toggle
+                  </button>
+                  <button type="button" class="btn btn-sm btn-outline-danger" (click)="deleteContact(contact.id)">
+                    Hapus
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

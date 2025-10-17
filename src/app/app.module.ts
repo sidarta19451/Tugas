@@ -12,6 +12,9 @@ import { KomentarComponent } from './profile-company/komentar/komentar.component
 import { AlamatComponent } from './profile-company/alamat/alamat.component';
 import { ProductComponent } from './profile-company/product/product.component';
 import { VisimisiComponent } from './profile-company/visimisi/visimisi.component';
+import { RectangleCalculatorComponent } from './rectangle-calculator/rectangle-calculator.component';
+import { ContactListComponent } from './contact-list/contact-list.component';
+import { TemperatureConverterComponent } from './temperature-converter/temperature-converter.component';
 
 
 @NgModule({
@@ -24,7 +27,10 @@ import { VisimisiComponent } from './profile-company/visimisi/visimisi.component
     KomentarComponent,
     AlamatComponent,
     ProductComponent,
-    VisimisiComponent
+    VisimisiComponent,
+    RectangleCalculatorComponent,
+    ContactListComponent,
+    TemperatureConverterComponent
     
   ],
   imports: [

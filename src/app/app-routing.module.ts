@@ -8,9 +8,15 @@ import { AlamatComponent } from './profile-company/alamat/alamat.component';
 import { ProductComponent } from './profile-company/product/product.component';
 import { KomentarComponent } from './profile-company/komentar/komentar.component';
 import { AboutusComponent } from './profile-company/aboutus/aboutus.component';
+import { RectangleCalculatorComponent } from './rectangle-calculator/rectangle-calculator.component';
+import { ContactListComponent } from './contact-list/contact-list.component';
+import { TemperatureConverterComponent } from './temperature-converter/temperature-converter.component';
 
 const routes: Routes = [
   { path: 'registration', component: RegistrationformComponent },
+  { path: 'kalkulator', component: RectangleCalculatorComponent },
+  { path: 'kontak', component: ContactListComponent },
+  { path: 'suhu', component: TemperatureConverterComponent },
   { path: 'profile-company',
     component:ProfileCompanyComponent,
     children:[
@@ -24,7 +30,7 @@ const routes: Routes = [
 
     ]
   },
-  
+
   { path: '', redirectTo: '/registration', pathMatch: 'full' },
   { path:'**', redirectTo: '/profile-company'}
 ];
